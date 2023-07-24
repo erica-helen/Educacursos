@@ -1,0 +1,86 @@
+{% extends "administrador/base.html" %}
+{%load static%}
+
+
+
+{% block conteudo %}
+<style>
+    h1 {
+        
+        font-family: 'Montserrat';
+        font-size: 50px;
+        color: black;
+        padding: 10px;
+        /* background-color: #36363a; */
+        /* display: inline-block; */
+        border-radius: 10px;
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+        text-align: center;
+        background-color: #f8fbff;
+    }
+    h2 {
+        font-family: georgia;
+        font-size: 25px;
+    }
+    body {
+        background-image: url('{% static "background/background6.jpg" %}');
+      
+        
+    }
+    .book {width: 300px;
+    border: 1px solid black;
+  
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    float: left;
+    height: 70vh;
+    text-align: center;
+    }
+    .imagem_principal {width: 80%;
+     display: block;
+     margin: auto; 
+     height: 60%;
+     object-fit: contain;
+     margin-bottom: 5px;
+    }
+    
+    .imagemeduca{
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+   
+    }
+
+    </style>
+
+
+
+<h1> Educa Cursos </h1>
+<h2> Cursos: </h2>
+
+
+<p><a href="{% url 'administrador:add' %}"> adicionar curso <img src="{% static 'plus-circle-fill.svg' %}"></a></p>
+
+
+<img src="{% static 'background/educacursos.jpg' %}" class="imagemeduca">
+
+{% for curso in cursos %}
+
+    <div class="book">
+        <h2>{{curso.titulo}}</h2>
+        <p> € {{curso.valor}}</p>
+        {% if curso.imagem %}
+        <img src="{{curso.imagem.url}}" class="imagem_principal"/>
+        {% endif %}
+
+        <a href="{% url 'administrador:delete' curso.id %}"> <img src="{% static 'trash3.svg' %}" ></a>
+        <a href="{% url 'administrador:edit' curso.id %}"> <img src="{% static 'pencil.svg' %}" ></a>
+
+
+    </div>
+
+
+    {% endfor %}
+{%endblock%}

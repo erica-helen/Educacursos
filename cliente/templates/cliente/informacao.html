@@ -1,0 +1,50 @@
+{% load static %}
+
+{% block conteudo %}
+
+<style>
+    .container {
+        display: flex;
+        align-items: flex-start;
+    }
+    .descricao-container {
+        flex: 70%;
+        margin-right: 20px;
+        text-align: justify;
+    }
+    .descricao {
+        background-color: #f1f1f1;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .preco {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .imagem_principal {
+        width: 50%;
+        display: block;
+        margin-top: 20px;
+        height: auto;
+    }
+</style>
+
+<h1>Descrição do curso</h1>
+
+<div class="container">
+    <div class="descricao-container">
+        <div class="descricao">
+            <h2>{{ curso.titulo }}</h2>
+            <h2>{{ curso.descricao }}</h2>
+        </div>
+    </div>
+    <div class="preco">
+        <p> Preço: € {{ curso.valor }}</p>
+    </div>
+</div>
+
+<img src="{{ curso.imagem.url }}" class="imagem_principal" />
+
+{% endblock %}

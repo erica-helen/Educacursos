@@ -1,0 +1,209 @@
+{% load static %}
+
+{% block conteudo %}
+<style>
+    h1 {
+        font-family: 'Montserrat';
+        font-size: 80px;
+        color: black;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+
+    h1:hover {
+        font-family: 'Montserrat';
+    }
+
+    h2 {
+        font-family: 'Montserrat';
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    body {
+        background-image: url('{% static "background/background6.jpg" %}');
+        background-size: 100%;
+    }
+
+    .book {
+        width: 300px;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        float: left;
+        height: 70vh;
+        text-align: center;
+        background-color: #fff;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .book:hover {
+        background-color: #dff5f5;
+        transform: translateX(10px) scale(1.01);
+    }
+
+    .imagem_principal {
+        width: 80%;
+        display: block;
+        margin: auto;
+        height: 60%;
+        object-fit: contain;
+        margin-bottom: 5px;
+    }
+
+    .imagemeduca {
+        width: 100%;
+        height: 40%;
+        object-fit: cover;
+    }
+
+    .nav {
+        text-align: right;
+    }
+
+    .hello-msg {
+        font-family: 'Montserrat';
+        font-size: 24px;
+    }
+
+    .home {
+        font-family: 'Montserrat';
+        font-size: 24px;
+        background-color: #f8fbff;
+        color: black;
+        text-decoration: none;
+        display: block; 
+        padding: 10px 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin-bottom: 10px; 
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center;
+        background-color: rgb(226, 230, 230);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .header-container h1 {
+        margin: 0;
+        margin-right: 20px; 
+    }
+
+    .menu {
+        width: 120px;
+        height: 120px;
+    }
+
+    .menu-links {
+        display: flex;
+        flex-direction: column; 
+    }
+
+
+    .menu-links a {
+        margin-bottom: 10px;
+    }
+
+    .educa-cursos-image {
+        width: 200px;
+        height: 200px;
+    }
+    .search-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .search-input {
+        width: 400px;
+        padding: 10px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .search-button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<nav class="nav">
+    <span class="hello-msg"> Bem vindo, {{ user.username }}! </span>
+    <span class="hello-msg"><a href="{% url 'cliente:logout' %}"> Logout </a> </span>
+    <br>
+</nav>
+
+<div class="header-container">
+
+    <div class="menu-links">
+        <a class="home" href="{% url 'cliente:home' %}"> Home </a>
+        <a class="home" href="{% url 'cliente:login' %}"> Login </a>
+        <a class="home" href="{% url 'cliente:register' %}"> Register </a>
+    </div>
+    <h1>Educa Cursos</h1>
+    <img src="{% static 'edu.jpg' %}" class="educa-cursos-image">
+</div>
+
+<h3>Uma ampla seleção de cursos. Amplie suas oportunidades de carreira.</h3>
+
+
+<div class="search-form">
+    <form action="{% url 'cliente:pesquisar_cursos' %}" method="GET">
+        <input type="text" name="q" class="search-input" placeholder="Digite o nome do curso">
+        <button type="submit" class="search-button">Pesquisar</button>
+    </form>
+</div>
+
+<img src="{% static 'background/educacursos.jpg' %}" class="imagemeduca">
+
+{% for curso in cursos %}
+<div class="book">
+    <h2>{{ curso.titulo }}</h2>
+    <p>Preço: € {{ curso.valor }}</p>
+    {% if curso.imagem %}
+    <img src="{{ curso.imagem.url }}" class="imagem_principal" />
+    {% endif %}
+    
+    <a href="{% url 'cliente:add' curso.id  %}">  <img src="{% static 'bag-heart-fill.svg' %}" ></a>
+    <a href="{% url 'cliente:informacao' curso.id  %}">  <img src="{% static 'hand-index-thumb.svg' %}" ></a>
+    
+    {% if curso.comprado %}
+    <p>CURSO COMPRADO</p>
+    {% endif %}
+</div>
+
+{% endfor %}
+
+{% endblock %}

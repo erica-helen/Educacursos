@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos </title>
+    <style>
+        body {background-color:azure;
+        font-family:Georgia}
+    </style>
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- <a href="{% url 'administrador:add' %}"> Adicionar curso </a>
+            <br> -->
+            <a href="{%url 'cliente:home' %}"> Area do Cliente </a>
+
+            
+        </nav>
+    </header>
+    <main>
+        {% block conteudo %}
+
+        {% endblock %}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>   

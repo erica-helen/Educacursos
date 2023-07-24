@@ -1,0 +1,14 @@
+
+{%block conteudo%}
+
+<h1> Comprar curso </h1>
+<h2> Insira seus dados: </h2>
+<form method="post" enctype="multipart/form-data">  
+{% csrf_token %}
+
+
+{{formulario.as_p}}
+
+<button> Comprar </button>
+</form>
+{%endblock%}

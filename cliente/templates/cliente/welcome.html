@@ -1,0 +1,17 @@
+{% extends "administrador/base.html" %}
+{%load static%}
+
+
+
+{% block conteudo %}
+
+
+<h1> Educa Cursos </h1>
+<h2> Uma ampla seleção de cursos</h2>
+<h3> Cursos disponíveis: </h3>
+<p><a href="{% url 'cliente:add' %}"> adicionar curso <img src="{% static 'plus-circle-fill.svg' %}"></a></p>
+
+
+
+
+{%endblock%}

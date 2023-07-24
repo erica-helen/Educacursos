@@ -1,0 +1,14 @@
+{% extends "administrador/home.html" %}
+{%block conteudo%}
+
+<h1> Adicionar Curso </h1>
+
+<form method="post" enctype="multipart/form-data">  
+{% csrf_token %}
+
+
+{{formulario.as_p}}
+
+<button> Adicionar </button>
+</form>
+{%endblock%}

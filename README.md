@@ -1,0 +1,2 @@
+# Educacursos
+The project’s objective was to develop an intuitive and responsive web application that enhances user experience by enabling course searches, detailed views, and secure purchases. The website also boasts a robust administration panel for efficient management of courses, categories, and users. The application is built using Python with Django as the primary framework, and incorporates HTML5 and CSS3 for a seamless and visually appealing interface.
